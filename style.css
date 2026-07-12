@@ -11,10 +11,44 @@
 }
 
 
-#calculatorBody{
+#calculatorButton{
     width: 250px;
     display: flex;
     flex-wrap:wrap;
 
 
 }
+
+
+.calculator{
+
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    
+    
+    
+}
+
+
+
+
+.calculatorDisplay{
+
+    background-color: rgb(64, 64, 64);
+    color: antiquewhite;
+    font-size: 30px;
+    text-align: right;
+    border-radius: 5px;
+    width: 248px;
+    height: 35px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    padding-right: 8px;
+
+    
+
+}
+
+
+
