@@ -1,8 +1,8 @@
 let input="";
 let i=0;
 let resultDone=0;
-
-
+let isEqualsPressed = false;
+let operators = ["+", "-", "*", "/"];
 
 
 
@@ -10,45 +10,47 @@ let resultDone=0;
 const calculatorButton = document.querySelector("#calculatorButton");
 const display = document.querySelector(".calculatorDisplay");
 
-calculatorButton.addEventListener('click',(event) => {
+calculatorButton.addEventListener('click', (event) => {
 
-    if(event.target.classList.contains('button')){
-        if((event.target.textContent)=="=")
-            operate(input);
-        else if((event.target.textContent)=="C"){
-            input=""
-            display.textContent = 0
-            resultDone = 0
-        }
-        else{
+    if (event.target.classList.contains('button')) {
+        let clickButton = event.target.textContent;
 
-        let operators=["+", "-", "*", "/"]
-        let clickButton=event.target.textContent
-        let lastChar=input.slice(-1)
-
-        if(resultDone==1 && (!(operators.includes(clickButton)))){
-            input=""
-            resultDone=0 
-        }
-        else if (resultDone == 1 && operators.includes(clickButton)) {
-                resultDone = 0; 
-        }
-
-        if(operators.includes(clickButton) && operators.includes(lastChar))
-            input = input.slice(0, -1);
-
-        else if (operators.includes(clickButton)) {
-            if (input.includes("+") || input.includes("-") || input.includes("*") || input.includes("/")) 
+        if (clickButton == "=") {
+            if (input.includes("+") || input.includes("-") || input.includes("*") || input.includes("/")) {
                 operate(input);
+                resultDone = 1;
+            }
         }
-
-        input += clickButton;
-        display.textContent = input;
+        else if (clickButton == "C") {
+            input = "";
+            display.textContent = 0;
+            resultDone = 0;
         }
+        else {
+            let lastChar = input.slice(-1);
 
+            if (resultDone == 1 && (!(operators.includes(clickButton)))) {
+                input = "";
+                resultDone = 0;
+            }
+            else if (resultDone == 1 && operators.includes(clickButton)) {
+                resultDone = 0;
+            }
+
+            if (operators.includes(clickButton) && operators.includes(lastChar)) {
+                input = input.slice(0, -1);
+            }
+            else if (operators.includes(clickButton)) {
+                if (input.includes("+") || input.includes("-") || input.includes("*") || input.includes("/")) {
+                    operate(input);
+                    resultDone = 0;
+                }
+            }
+
+            input += clickButton;
+            display.textContent = input;
+        }
     }
-
-
 });
 
 
